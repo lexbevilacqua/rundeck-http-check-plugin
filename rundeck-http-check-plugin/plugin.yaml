@@ -1,0 +1,45 @@
+name: External http check
+version: 1.0
+rundeckPluginVersion: 1.2
+author: Alexandre Bevilacqua
+date: 2018-01-12T22:00Z
+url: 
+providers:
+    - name: external-http-check
+      title: External http check
+      service: WorkflowNodeStep
+      plugin-type: script
+      script-interpreter: /bin/bash
+      script-file: check-status.sh
+      script-args: '${config.URL_CHECK} ${config.RANGE_OK} ${config.RANGE_ERROR} ${config.RANGE_INFO} ${config.SECONDS_WAIT} ${config.MAX_REQUEST_ERRO}'
+      config:
+        - type: String
+          name: URL_CHECK
+          title: URL
+          description: URL to be checked
+        - type: String
+          name: RANGE_OK
+          title: Status code list OK
+          description: Status code list (comma separated) considered success
+        - type: String
+          name: RANGE_ERROR
+          title: Status code list ERROR
+          description: Status code list (comma separated) considered error
+        - type: String
+          name: RANGE_INFO
+          title: Status code list INFO
+          description: Status code list (comma separated) to log information
+        - type: String
+          name: MAX_TRY
+          title: Max attempts
+          description: Max requets until error
+        - type: String
+          name: SECONDS_WAIT
+          title: Seconds wait
+          description: Seconds between checks
+          default: 30
+        - type: String
+          name: MAX_REQUEST_ERRO
+          title: Max requets with error
+          description: Max requets with error (undefined status code)
+          default: 5
