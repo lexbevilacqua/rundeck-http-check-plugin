@@ -44,8 +44,8 @@ echo "[INFO] RANGE_INFO: ${RANGE_INFO}"
 while true
 do
     (( TENTATIVA++ ))
-	RET_CODE=`curl -I ${URL_CHECK} 2>/dev/null | head -n 1 | cut -d$' ' -f2`
-    CONTENT=`curl -s ${URL_CHECK}`
+	RET_CODE=`curl --insecure -I ${URL_CHECK} 2>/dev/null | head -n 1 | cut -d$' ' -f2`
+    CONTENT=`curl --insecure -s ${URL_CHECK}`
     
     echo "[INFO] Attempt (${TENTATIVA}) - Status code: ${RET_CODE}"
     
